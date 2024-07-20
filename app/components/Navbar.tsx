@@ -1,9 +1,12 @@
+// app/components/Navbar.tsx
+"use client";
+
 import Link from 'next/link';
 import { useState } from 'react';
-import styles from './Navbar.module.css';
+import styles from '../styles/Navbar.module.css';
 
 interface NavbarProps {
-  togglePaymentForm: () => void;
+  togglePaymentForm?: () => void; // Optional prop for toggling payment form
 }
 
 const Navbar: React.FC<NavbarProps> = ({ togglePaymentForm }) => {
@@ -17,7 +20,7 @@ const Navbar: React.FC<NavbarProps> = ({ togglePaymentForm }) => {
     <nav className={styles.navbar}>
       <div className={styles.navContainer}>
         <Link href="/" className={styles.navLogo}>
-          Halflings Novelties
+          MyApp
         </Link>
         <div className={styles.navToggle} onClick={toggleNavbar}>
           <div className={styles.bar}></div>
@@ -36,15 +39,27 @@ const Navbar: React.FC<NavbarProps> = ({ togglePaymentForm }) => {
             </Link>
           </li>
           <li className={styles.navItem}>
+            <Link href="/services" className={styles.navLinks}>
+              Services
+            </Link>
+          </li>
+          <li className={styles.navItem}>
             <Link href="/contact" className={styles.navLinks}>
               Contact
             </Link>
           </li>
           <li className={styles.navItem}>
-            <button className={styles.navLinks} onClick={togglePaymentForm}>
+            <Link href="/cart" className={styles.navLinks}>
               🛒
-            </button>
+            </Link>
           </li>
+          {togglePaymentForm && (
+            <li className={styles.navItem}>
+              <button onClick={togglePaymentForm} className={styles.navLinks}>
+                Toggle Payment Form
+              </button>
+            </li>
+          )}
         </ul>
       </div>
     </nav>

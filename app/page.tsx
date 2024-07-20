@@ -1,8 +1,8 @@
+// app/page.tsx
 "use client";
 import { useState } from "react";
 import { CreditCard, PaymentForm } from "react-square-web-payments-sdk";
 import { submitPayment } from "./actions/actions";
-import Navbar from "./components/nav";
 
 export default function Home() {
   const [isPaymentFormVisible, setPaymentFormVisible] = useState(false);
@@ -15,8 +15,9 @@ export default function Home() {
   const locationId = "LN8TP2PP4XFBR";
 
   return (
-    <>
-      <Navbar togglePaymentForm={togglePaymentForm} />
+    <main>
+      <h1>Home Page</h1>
+      <button onClick={togglePaymentForm}>Toggle Payment Form</button>
       {isPaymentFormVisible && (
         <PaymentForm
           applicationId={appId}
@@ -29,6 +30,6 @@ export default function Home() {
           <CreditCard />
         </PaymentForm>
       )}
-    </>
+    </main>
   );
 }

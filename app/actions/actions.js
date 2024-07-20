@@ -5,7 +5,9 @@ import { randomUUID } from "crypto";
 
 BigInt.prototype.toJSON = function () {
     return this.toString();
-  };
+};
+
+console.log("Square Access Token:", process.env.SQUARE_ACCESS_TOKEN);
 
 const { paymentsApi } = new Client({
   accessToken: process.env.SQUARE_ACCESS_TOKEN,
@@ -24,6 +26,6 @@ export async function submitPayment(sourceId) {
     });
     return result;
   } catch (error) {
-    console.log(error);
+    console.log("Payment Error:", error);
   }
 }
